@@ -8,10 +8,10 @@ start=`date +%s`
 
 while getopts :hvamf:P:u: opt; do
     case $opt in
-        h) echo -e "Options: \n -h \t print help \n -v \t save as mp4 file \n -a \t save as m4a file \n -f \t specify format as yt-dlp format (default: \"bv+ba/b\") \n -P \t specify download path (default: ./) \n -u \t specify urls file"; exit;;
+        h) echo -e "Options: \n -h \t print help \n -v \t save as mp4 file \n -a \t save as m4a file \n -f \t specify format as yt-dlp format (default: \"bv+ba/b\" - best video & best audio) \n -P \t specify download path (default: ./) \n -u \t specify urls file"; exit;;
         v) echo video option selected; format="mp4";;
         a) echo audio only option selected; format="m4a";;
-        f) echo fromat $OPTARG; format=$OPTARG;;
+        f) echo format $OPTARG; format=$OPTARG;;
         P) echo output path=$OPTARG; path=$OPTARG;;
         u) echo use urls file; urls=$(cat $OPTARG);;
         ?) echo "Unknown option -$OPTARG"; exit 1;;
