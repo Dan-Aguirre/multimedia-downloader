@@ -25,8 +25,9 @@ This program uses a `Bash` shell and relies on `yt-dlp` as a command line utilit
 ||Option to not store metadata|
 ||Option to not embed thumbnail|
 ||Option to not embed subtitles|
+||Option to include all|
 ||Implement output template options|
 ||Add playlist ordering option|
 ||Build yt-dlp command using functions rather than hardcoded|
 ||Organize and order progress and status output|
-||clean and comment code|
+||Clean and comment code|
