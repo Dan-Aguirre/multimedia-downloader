@@ -9,12 +9,13 @@ Options:
   -h     print help
   -v     save as mp4 file
   -a     save as m4a file
-  -m     embed metadata into file
+  -m     embed metadata into file (all available metadata: channel, description, title, date, chapters, and more...)
   -t     embed thumbnail into file
   -s     embed subtitles into file
   -c     append content id to title
-  -f     specify format as yt-dlp format (default: "bv+ba/b" - best video & best audio)
   -p     enable playlist format (all playlists will be saved into a folder with playlist name and videos will be indexed in order)
+  -D     uses quality of life defaults (same as using -m, -t, -s, -c, and -p)
+  -f     specify format as yt-dlp format (default: "bv+ba/b" - best video & best audio)
   -P     specify download path (default: ./)
   -o     specify output template in yt-dlp format (overrides "-c" and "-p", and does not currently support spaces)
   -u     specify urls file
@@ -31,7 +32,7 @@ This program uses a `Bash` shell and relies on `yt-dlp` as a command line utilit
 |:heavy_check_mark:|Option to store metadata|
 |:heavy_check_mark:|Option to embed thumbnail|
 |:heavy_check_mark:|Option to embed subtitles|
-||Option to include all|
+|:heavy_check_mark:|Option to use quality of life defaults|
 |:heavy_check_mark:|Implement output template options|
 |:heavy_check_mark:|Add playlist formatting and ordering option|
 ||Option to save/append url's to file for archiving|
