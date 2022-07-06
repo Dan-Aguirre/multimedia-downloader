@@ -22,20 +22,20 @@ chmod +x youtube-downloader.sh
 Usage: ./youtube-downloader.sh [OPTION]... [URLS]...
 
 Options:
-  -h     print help
-  -v     save as mp4 file (default)
-  -a     save as m4a file (ignores -s, cannot embed subtitles into m4a)
-  -m     embed metadata into file (all available metadata: channel, description, title, date, chapters, and more...)
-  -t     embed thumbnail into file
-  -s     embed subtitles into file
-  -c     append content id to title
-  -p     enable playlist format (all playlists will be saved into a folder with playlist name and videos will be indexed in order)
-  -D     uses quality of life defaults (same as using -m, -t, -s, -c, and -p)
-  -f     specify format as yt-dlp format
-  -P     specify download path (default: ./)
-  -o     specify output template in yt-dlp format (overrides "-c" and "-p", and does not currently support spaces)
-  -u     specify urls file
-  -U     specify file to save urls in after completion (appends)
+  -h                     print help
+  -v                     save as mp4 file (default)
+  -a                     save as m4a file (ignores -s, cannot embed subtitles into m4a)
+  -m                     embed metadata into file (all available metadata: channel, description, title, date, chapters, and more...)
+  -t                     embed thumbnail into file
+  -s                     embed subtitles into file
+  -c                     append content id to title
+  -p                     enable playlist format (all playlists will be saved into a folder with playlist name and videos will be indexed in order)
+  -D                     uses quality of life defaults (same as using -m, -t, -s, -c, and -p)
+  -f FORMAT              specify format as yt-dlp format
+  -P DIRECTORY           specify download path (default: ./)
+  -o [TYPES:]TEMPLATE    specify output template in yt-dlp format (overrides "-c" and "-p", and does not currently support spaces)
+  -u FILE                specify urls file
+  -U FILE                specify file to save urls in after completion (appends)
 
 ```
 
