@@ -15,20 +15,20 @@ printHelp () {
     echo "Usage: $0 [OPTION]... [URLS]...";
     echo;
     echo "Options:";
-    echo -e "  -h \t print help";
-    echo -e "  -v \t save as mp4 file (default)";
-    echo -e "  -a \t save as m4a file (ignores -s, cannot embed subtitles into m4a)";
-    echo -e "  -m \t embed metadata into file (all available metadata: channel, description, title, date, chapters, and more...)";
-    echo -e "  -t \t embed thumbnail into file";
-    echo -e "  -s \t embed subtitles into file";
-    echo -e "  -c \t append content id to title";
-    echo -e "  -p \t enable playlist format (all playlists will be saved into a folder with playlist name and videos will be indexed in order)";
-    echo -e "  -D \t uses quality of life defaults (same as using -m, -t, -s, -c, and -p)";
-    echo -e "  -f \t specify format as yt-dlp format";
-    echo -e "  -P \t specify download path (default: ./)";
-    echo -e "  -o \t specify output template in yt-dlp format (overrides \"-c\" and \"-p\", and does not currently support spaces)";
-    echo -e "  -u \t specify urls file";
-    echo -e "  -U \t specify file to save urls in after completion (appends)"
+    echo -e "  -h \t\t\t print help";
+    echo -e "  -v \t\t\t save as mp4 file (default)";
+    echo -e "  -a \t\t\t save as m4a file (ignores -s, cannot embed subtitles into m4a)";
+    echo -e "  -m \t\t\t embed metadata into file (all available metadata: channel, description, title, date, chapters, and more...)";
+    echo -e "  -t \t\t\t embed thumbnail into file";
+    echo -e "  -s \t\t\t embed subtitles into file";
+    echo -e "  -c \t\t\t append content id to title";
+    echo -e "  -p \t\t\t enable playlist format (all playlists will be saved into a folder with playlist name and videos will be indexed in order)";
+    echo -e "  -D \t\t\t uses quality of life defaults (same as using -m, -t, -s, -c, and -p)";
+    echo -e "  -f FORMAT \t\t specify format as yt-dlp format";
+    echo -e "  -P DIRECTORY \t\t specify download path (default: ./)";
+    echo -e "  -o [TYPES:]TEMPLATE \t specify output template in yt-dlp format (overrides \"-c\" and \"-p\", and does not currently support spaces)";
+    echo -e "  -u FILE \t\t specify urls file";
+    echo -e "  -U FILE \t\t specify file to save urls in after completion (appends)"
 }
 
 video () {
