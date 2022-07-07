@@ -5,7 +5,7 @@ options="";
 outputTemplate="";
 contentID="";
 savedURLsFile="";
-format="mp4";
+format="bv*+ba/b --format-sort ext";
 path="./";
 usingPlaylistFormat=false;
 printStatusOptions="--quiet --progress --newline";
@@ -16,29 +16,30 @@ printHelp () {
     echo;
     echo "Options:";
     echo -e "  -h \t\t\t print help";
-    echo -e "  -v \t\t\t save as mp4 file (default)";
-    echo -e "  -a \t\t\t save as m4a file (ignores -s, cannot embed subtitles into m4a)";
+    echo -e "  -v \t\t\t save as best video only file";
+    echo -e "  -a \t\t\t save as best audio only file";
     echo -e "  -m \t\t\t embed metadata into file (all available metadata: channel, description, title, date, chapters, and more...)";
     echo -e "  -t \t\t\t embed thumbnail into file";
-    echo -e "  -s \t\t\t embed subtitles into file";
+    echo -e "  -s \t\t\t embed subtitles into file (only for mp4, webm and mkv videos)";
     echo -e "  -c \t\t\t append content id to title";
-    echo -e "  -p \t\t\t enable playlist format (all playlists will be saved into a folder with playlist name and videos will be indexed in order)";
-    echo -e "  -D \t\t\t uses quality of life defaults (same as using -m, -t, -s, -c, and -p)";
-    echo -e "  -f FORMAT \t\t specify format as yt-dlp format";
+    echo -e "  -p \t\t\t enable youtube playlist format (youtube playlists will be saved into a folder with playlist name and videos will be indexed in order)";
+    echo -e "  -d \t\t\t uses quality of life defaults (same as using -m, -t, -s, -c, and -p)";
+    echo -e "  -l \t\t\t list all supported sites";
+    echo -e "  -f FORMAT \t\t specify format as yt-dlp format (default: \"bv*+ba/b --format-sort ext\" **best video + best audio, ordered by extension)";
     echo -e "  -P DIRECTORY \t\t specify download path (default: ./)";
     echo -e "  -o [TYPES:]TEMPLATE \t specify output template in yt-dlp format (overrides \"-c\" and \"-p\", and does not currently support spaces)";
     echo -e "  -u FILE \t\t specify urls file";
-    echo -e "  -U FILE \t\t specify file to save urls in after completion (appends)"
+    echo -e "  -U FILE \t\t specify file to save urls in after completion (appends)";
 }
 
 video () {
-    format="mp4";
+    # best video sorted by extension
+    format="bv --format-sort vext";
 }
 
 audio () {
-    format="m4a";
-    # overrides --embed-subs, subs cannot be embedded into m4a files
-    options="$options --no-embed-subs"
+    # best audio sorted by extension
+    format="ba --format-sort aext";
 }
 
 metadata () {
@@ -79,7 +80,7 @@ start=`date +%s`;
 
 
 # processing flags
-while getopts :hvamtscpDf:P:o:u:U: opt; do
+while getopts :hvamtscpdlf:P:o:u:U: opt; do
     case $opt in
         h) printHelp; exit;;
         v) echo video option selected; video;;
@@ -89,7 +90,8 @@ while getopts :hvamtscpDf:P:o:u:U: opt; do
         s) echo embedding subtitles; subtitles;;
         c) echo appending content id to title; displayContentID;;
         p) echo using playlist format; usingPlaylistFormat=true;;
-        D) echo using quality of life defaults; defaults;;
+        d) echo using quality of life defaults; defaults;;
+        l) echo listing supported sites:; yt-dlp --extractor-descriptions;;
         f) echo format $OPTARG; format=$OPTARG;;
         P) echo output path=$OPTARG; path=$OPTARG;;
         o) echo output template = \"$OPTARG\"; setOutputTemplate $OPTARG;;
@@ -109,13 +111,9 @@ echo;
 echo "parsing urls... (this may take some time if there's a long playlist or many playlists)";
 
 
-# removes playlist references from the end of videos "&list=...&index=..."
-urls=$(echo $urls | sed 's%\(&list=\)[^[:space:]]\+%%g');
-
-
 # extracts urls from playlist, and if -p is used, embeds playlist info into the url string for processing later on
 for playlist in $urls; do
-    if [[ $playlist == *"playlist?list="* ]]; then
+    if [[ $playlist == *"www.youtube.com/playlist?list="* ]]; then
 
         # removes playlist URL from urls list
         urls=$(echo $urls | sed "s|$playlist||g");
@@ -153,6 +151,11 @@ trap 'jobs -p | xargs kill' SIGINT
 for url in $urls; do
     # progress-template cannot be encoded into a variable due to an error with yt-dlp parsing
     # proceeding outputTemplate overrides initial –-output flag
+
+    # removes playlist references from the end of youtube videos "&list=...&index=..."
+    if [[ $url = *"www.youtube.com"* ]]; then
+        url=$(echo $url | sed 's%\(&list=\)[^[:space:]]\+%%g');
+    fi
 
     if [[ $url == *"PLAYLISTINFO"* ]]; then
         # grabs playlist info between the starting "[" and ending "]" brackets
