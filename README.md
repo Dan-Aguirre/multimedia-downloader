@@ -19,7 +19,7 @@ chmod +x multimedia-downloader.sh
 
 ## Usage
 ```
-Usage: ./youtube-downloader.sh [OPTION]... [URLS]...
+Usage: ./multimedia-downloader.sh [OPTION]... [URLS]...
 
 Options:
   -h                     print help
