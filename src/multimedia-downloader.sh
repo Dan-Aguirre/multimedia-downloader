@@ -30,6 +30,8 @@ printHelp () {
     echo -e "  -o [TYPES:]TEMPLATE \t specify output template in yt-dlp format (overrides \"-c\" and \"-p\", and does not currently support spaces)";
     echo -e "  -u FILE \t\t specify urls file";
     echo -e "  -U FILE \t\t specify file to save urls in after completion (appends)";
+    echo -e "  -S [OPTIONS] \t\t specify the sections to be removed using sponsorBlock [intro, outro, selfpromo, preview, filler, interaction, music_offtopic, all]";
+    echo -e "\t\t\t separated via \",\" or excluded via \"-\""
 }
 
 video () {
@@ -75,12 +77,16 @@ saveURLs () {
     echo $urls | sed 's/ /\n/g' >> $savedURLsFile;
 }
 
+sponsorBlock(){
+    options="--sponsorblock-remove $@ $options";
+}
+
 
 start=`date +%s`;
 
 
 # processing flags
-while getopts :hvamtscpdlf:P:o:u:U: opt; do
+while getopts :hvamtscpdlf:P:o:u:U:S: opt; do
     case $opt in
         h) printHelp; exit;;
         v) echo video option selected; video;;
@@ -97,6 +103,7 @@ while getopts :hvamtscpdlf:P:o:u:U: opt; do
         o) echo output template = \"$OPTARG\"; setOutputTemplate $OPTARG;;
         u) echo using urls file; urls=$(cat $OPTARG);;
         U) echo saving urls to $OPTARG; savedURLsFile=$OPTARG;;
+        S) echo using sponsor block remove options: $OPTARG; sponsorBlock $OPTARG;;
         ?) echo Unknown option -$OPTARG; exit 1;;
     esac
 done
