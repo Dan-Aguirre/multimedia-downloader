@@ -55,4 +55,5 @@ Options:
 |:heavy_check_mark:|Option to save/append url's to file for archiving|
 |:heavy_check_mark:|Build yt-dlp command using functions rather than hardcoded|
 ||Organize and order progress and status output|
+|:heavy_check_mark:|Add sponsorBlock integration|
 |:heavy_check_mark:|Clean and comment code|
