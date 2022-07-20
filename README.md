@@ -37,6 +37,9 @@ Options:
   -o [TYPES:]TEMPLATE    specify output template in yt-dlp format (overrides "-c" and "-p", and does not currently support spaces)
   -u FILE                specify urls file
   -U FILE                specify file to save urls in after completion (appends)
+  -M [OPTIONS]           specify the sections to be marked using sponsorBlock [intro, outro, selfpromo, preview, filler, interaction, music_offtopic, poi_highlight, all]
+                         separated via "," or excluded via "-"
+  -R [OPTIONS]           specify the sections to be removed using sponsorBlock, overrides mark (-M), and has same options excluding "poi_highlight"
 ```
 
 
