@@ -126,7 +126,7 @@ echo "parsing urls... (this may take some time if there's a long playlist or man
 
 # extracts urls from playlist, and if -p is used, embeds playlist info into the url string for processing later on
 for playlist in $urls; do
-    if [[ $playlist == *"www.youtube.com/playlist?list="* ]]; then
+    if [[ $playlist == *"youtube.com/playlist"* ]]; then
 
         # removes playlist URL from urls list
         urls=$(echo $urls | sed "s|$playlist||g");
@@ -166,7 +166,7 @@ for url in $urls; do
     # proceeding outputTemplate overrides initial –-output flag
 
     # removes playlist references from the end of youtube videos "&list=...&index=..."
-    if [[ $url = *"www.youtube.com"* ]]; then
+    if [[ $url = *"youtube.com"* ]]; then
         url=$(echo $url | sed 's%\(&list=\)[^[:space:]]\+%%g');
     fi
 
