@@ -13,7 +13,7 @@ This program uses a `Bash` shell and relies on `yt-dlp` as a command line utilit
 git clone https://github.com/Dan-Aguirre/multimedia-downloader.git
 cd multimedia-downloader/src
 chmod +x multimedia-downloader.sh
-./multimedia-downloader.sh
+./multimedia-downloader.sh -h
 ```
 
 
