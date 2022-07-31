@@ -106,7 +106,7 @@ while getopts :hvamtscpdlf:P:o:u:U:M:R: opt; do
         f) echo format $OPTARG; format=$OPTARG;;
         P) echo output path=$OPTARG; path=$OPTARG;;
         o) echo output template = \"$OPTARG\"; setOutputTemplate $OPTARG;;
-        u) echo using urls file; urls=$(cat $OPTARG);;
+        u) echo using urls file; urls=$(cat "$OPTARG");;
         U) echo saving urls to $OPTARG; savedURLsFile=$OPTARG;;
         M) echo using sponsor block mark options: $OPTARG; sponsorBlockMark $OPTARG;;
         R) echo using sponsor block remove options: $OPTARG; sponsorBlockRemove $OPTARG;;
